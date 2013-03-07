@@ -1,0 +1,20 @@
+require 'buildr/findbugs'
+require 'buildr/pmd'
+require 'buildr/checkstyle'
+
+repositories.remote << 'http://repo1.maven.org/maven2'
+
+ZOOKEEPER = 'org.apache.zookeeper:zookeeper:jar:3.4.5'
+SLF4J     = 'org.slf4j:slf4j-api:jar:1.7.2'
+SERVLET   = 'javax.servlet:servlet-api:jar:2.5'
+JETTY     = transitive('org.eclipse.jetty:jetty-server:jar:8.1.9.v20130131')
+JUNIT     = transitive('junit:junit:jar:4.11')
+
+define 'mace-server' do
+  project.version = '0.0.1'
+  compile.with ZOOKEEPER, SLF4J, SERVLET, JETTY
+  test.with JUNIT
+  package :jar
+  pmd.enabled = true
+end
+

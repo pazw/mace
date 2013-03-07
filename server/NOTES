@@ -1,0 +1,10 @@
+main -> start http server
+http accept -> new Job
+
+separate thread (watcher)
+-> watch zookeeper job dir, task dir
+job appears -> Job.run() -> new Task;
+task change -> Job.run() -> new Task;
+
+Job.run()
+
